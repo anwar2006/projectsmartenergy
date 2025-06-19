@@ -36,33 +36,66 @@ $timestamps = array_reverse($timestamps);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Smart Energy</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-purple': '#4B2E83',
+                        'brand-purple-light': '#5d3a9f'
+                    }
+                }
+            }
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="bg-gray-100">
+    <!-- Top Navigation -->
     <nav class="bg-white shadow-lg">
-        <div class="max-w-7xl mx-auto px-4">
+        <div class="max-w-full mx-auto px-4">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <h1 class="text-xl font-bold">Smart Energy Dashboard</h1>
+                    <h1 class="text-xl font-bold text-brand-purple">Smart Energy Dashboard</h1>
                 </div>
                 <div class="flex items-center">
-                    <span class="text-gray-700 mr-4">Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
-                    <a href="../../includes/logout.php" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                        Logout
-                    </a>
+                    <span class="text-gray-700">Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
                 </div>
             </div>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div class="px-4 py-6 sm:px-0">
-            <div class="bg-white rounded-lg shadow p-6">
-                <h2 class="text-2xl font-bold mb-4">Energy Consumption</h2>
-                <canvas id="consumptionChart"></canvas>
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="bg-brand-purple w-64 min-h-screen">
+            <div class="p-4">
+                <div class="mb-8">
+                    <h2 class="text-white text-2xl font-bold mb-1">smart</h2>
+                    <h2 class="text-white text-2xl font-bold">energy</h2>
+                </div>
+                <nav class="space-y-4">
+                    <a href="dashboard.php" class="flex items-center text-white py-2 px-4 rounded hover:bg-brand-purple-light">
+                        <span>dashboard</span>
+                    </a>
+                    <a href="#" class="flex items-center text-white py-2 px-4 rounded hover:bg-brand-purple-light">
+                        <span>settings</span>
+                    </a>
+                    <a href="../../includes/logout.php" class="flex items-center text-white py-2 px-4 rounded hover:bg-brand-purple-light mt-8">
+                        <span>logout</span>
+                    </a>
+                </nav>
             </div>
         </div>
-    </main>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8">
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-2xl font-bold mb-4 text-brand-purple">Energy Consumption</h2>
+                <canvas id="consumptionChart"></canvas>
+            </div>
+        </main>
+    </div>
 
     <script>
         const ctx = document.getElementById('consumptionChart').getContext('2d');
@@ -73,8 +106,10 @@ $timestamps = array_reverse($timestamps);
                 datasets: [{
                     label: 'Energy Consumption (kWh)',
                     data: <?php echo json_encode($consumption_data); ?>,
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
+                    borderColor: '#4B2E83', // Purple brand color
+                    backgroundColor: 'rgba(75, 46, 131, 0.1)',
+                    tension: 0.1,
+                    fill: true
                 }]
             },
             options: {
@@ -82,6 +117,12 @@ $timestamps = array_reverse($timestamps);
                 scales: {
                     y: {
                         beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
                     }
                 }
             }

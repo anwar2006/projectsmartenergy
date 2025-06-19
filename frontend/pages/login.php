@@ -47,11 +47,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Smart Energy Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-purple': '#4B2E83',
+                        'brand-purple-light': '#5d3a9f'
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body class="bg-gray-100">
     <div class="min-h-screen flex items-center justify-center">
         <div class="bg-white p-8 rounded-lg shadow-md w-96">
-            <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Login</h2>
+            <h2 class="text-2xl font-bold mb-6 text-center text-brand-purple">Login</h2>
             
             <?php if ($error): ?>
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
@@ -77,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 
                 <div class="flex items-center justify-between">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+                    <button class="bg-brand-purple hover:bg-brand-purple-light text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
                             type="submit">
                         Sign In
                     </button>
