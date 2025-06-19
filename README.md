@@ -13,7 +13,7 @@ A modern energy monitoring dashboard built with Node.js and Chart.js.
 ## Prerequisites
 
 - Node.js (v14 or higher)
-- MongoDB
+- mysql
 - npm or yarn
 
 ## Installation
