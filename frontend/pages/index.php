@@ -36,6 +36,7 @@ if (isset($_SESSION['user_id'])) {
                 <div class="flex items-center">
                     <span class="text-xl font-bold text-brand-purple">Smart Energy Platform</span>
                 </div>
+<<<<<<< HEAD
                 <div class="flex items-center space-x-2">
                     <a href="login.php" class="bg-brand-purple hover:bg-brand-purple-light text-white font-bold py-2 px-4 rounded">
                         Login
@@ -43,6 +44,12 @@ if (isset($_SESSION['user_id'])) {
                     <a href="register.php" class="bg-white border border-brand-purple text-brand-purple hover:bg-brand-purple hover:text-white font-bold py-2 px-4 rounded transition-colors">
                         Register
                     </a>
+=======
+                <div class="flex items-center">
+                    <a href="login.php" class="bg-brand-purple hover:bg-brand-purple-light text-white font-bold py-2 px-4 rounded">
+                        Login
+                    </a>
+>>>>>>> baf8b528e5d6b703344b2839a090d11a5e6a1c19
                 </div>
             </div>
         </div>
