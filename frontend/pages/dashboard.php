@@ -32,6 +32,7 @@ $db = $database->getConnection();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
 </head>
 <body class="bg-gray-100">
     <!-- Top Navigation -->
@@ -71,121 +72,42 @@ $db = $database->getConnection();
 
         <!-- Main Content -->
         <main class="flex-1 p-8">
-            <style>
-    body {
-      font-family: sans-serif;
-      background: #f4f4f4;
-    }
-    h2 {
-      margin-top: 40px;
-    }
-    .chart-container {
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto 50px auto;
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
-    canvas {
-      max-width: 100%;
-      height: 400px;
-    }
-  </style>
-  <div class="chart-container">
-    <h2>Zonnepaneelspanning (V)</h2>
-    <canvas id="spanningChart"></canvas>
-  </div>
+            <div class="chart-container">
+                <h2>Zonnepaneelspanning (V)</h2>
+                <canvas id="spanningChart"></canvas>
+            </div>
 
-  <div class="chart-container">
-    <h2>Zonnepaneelstroom (A)</h2>
-    <canvas id="stroomChart"></canvas>
-  </div>
+            <div class="chart-container">
+                <h2>Zonnepaneelstroom (A)</h2>
+                <canvas id="stroomChart"></canvas>
+            </div>
 
-  <div class="chart-container">
-    <h2>Binnen- en Buitentemperatuur (°C)</h2>
-    <canvas id="tempChart"></canvas>
-  </div>
+            <div class="chart-container">
+                <h2>Binnen- en Buitentemperatuur (°C)</h2>
+                <canvas id="tempChart"></canvas>
+            </div>
 
-  <div class="chart-container">
-    <h2>Luchtvochtigheid (%)</h2>
-    <canvas id="luchtChart"></canvas>
-  </div>
+            <div class="chart-container">
+                <h2>Luchtvochtigheid (%)</h2>
+                <canvas id="luchtChart"></canvas>
+            </div>
 
-  <div class="chart-container">
-    <h2>Waterstofproductie (L/u)</h2>
-    <canvas id="waterstofChart"></canvas>
-  </div>
+            <div class="chart-container">
+                <h2>Waterstofproductie (L/u)</h2>
+                <canvas id="waterstofChart"></canvas>
+            </div>
 
-  <div class="chart-container">
-    <h2>Accuniveau (%)</h2>
-    <canvas id="accuChart"></canvas>
-  </div>
+            <div class="chart-container">
+                <h2>Accuniveau (%)</h2>
+                <canvas id="accuChart"></canvas>
+            </div>
 
-  <div class="chart-container">
-    <h2>CO₂-concentratie binnen (ppm)</h2>
-    <canvas id="co2Chart"></canvas>
-  </div>
+            <div class="chart-container">
+                <h2>CO₂-concentratie binnen (ppm)</h2>
+                <canvas id="co2Chart"></canvas>
+            </div>
 
-  <script>
-    fetch('http://localhost:3000')
-      .then(res => res.json())
-      .then(data => {
-        const tijd = data.map(d => d["Tijdstip"]);
-        const spanning = data.map(d => d["Zonnepaneelspanning (V)"]);
-        const stroom = data.map(d => d["Zonnepaneelstroom (A)"]);
-        const buitenTemp = data.map(d => d["Buitentemperatuur (°C)"]);
-        const binnenTemp = data.map(d => d["Binnentemperatuur (°C)"]);
-        const luchtvochtigheid = data.map(d => d["Luchtvochtigheid (%)"]);
-        const waterstof = data.map(d => d["Waterstofproductie (L/u)"]);
-        const accu = data.map(d => d["Accuniveau (%)"]);
-        const co2 = data.map(d => d["CO2-concentratie binnen (ppm)"]);
-
-        const makeChart = (id, label, data, color) => {
-          new Chart(document.getElementById(id), {
-            type: 'line',
-            data: {
-              labels: tijd,
-              datasets: [{
-                label,
-                data,
-                borderColor: color,
-                backgroundColor: 'rgba(0,0,0,0)',
-                borderWidth: 2
-              }]
-            },
-            options: {
-              responsive: true,
-              plugins: { legend: { display: true } },
-              scales: {
-                x: { display: true, title: { display: true, text: 'Tijdstip' } },
-                y: { beginAtZero: false }
-              }
-            }
-          });
-        };
-
-        makeChart('spanningChart', 'Zonnepaneelspanning (V)', spanning, 'orange');
-        makeChart('stroomChart', 'Zonnepaneelstroom (A)', stroom, 'green');
-        makeChart('tempChart', 'Temperatuur (°C)', [
-          {
-            label: 'Buitentemperatuur',
-            data: buitenTemp,
-            borderColor: 'blue'
-          },
-          {
-            label: 'Binnentemperatuur',
-            data: binnenTemp,
-            borderColor: 'red'
-          }
-        ], null);
-        makeChart('luchtChart', 'Luchtvochtigheid (%)', luchtvochtigheid, 'teal');
-        makeChart('waterstofChart', 'Waterstofproductie (L/u)', waterstof, 'purple');
-        makeChart('accuChart', 'Accuniveau (%)', accu, 'black');
-        makeChart('co2Chart', 'CO₂-concentratie (ppm)', co2, 'gray');
-      });
-  </script>
+            <script src="../../js/dashboard.js"></script>
         </main>
     </div>
 
