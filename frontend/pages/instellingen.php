@@ -94,17 +94,71 @@ if (!isset($_SESSION['user_id'])) {
         </main>
     </div>
     <script>
+    const translations = {
+      nl: {
+        instellingen: 'Instellingen',
+        beheer: 'Hier kun je je instellingen beheren.',
+        taalkeuze: 'Taalkeuze',
+        grafiek: 'Voorkeur grafiektype',
+        lijn: 'Lijn',
+        staaf: 'Staaf',
+        cirkel: 'Cirkel',
+        meldingen: 'Meldingen ontvangen',
+        opslaan: 'Opslaan',
+        opgeslagen: 'Instellingen opgeslagen',
+        dashboard: 'dashboard',
+        logout: 'logout'
+      },
+      en: {
+        instellingen: 'Settings',
+        beheer: 'Here you can manage your settings.',
+        taalkeuze: 'Language',
+        grafiek: 'Preferred chart type',
+        lijn: 'Line',
+        staaf: 'Bar',
+        cirkel: 'Pie',
+        meldingen: 'Receive notifications',
+        opslaan: 'Save',
+        opgeslagen: 'Settings saved',
+        dashboard: 'dashboard',
+        logout: 'logout'
+      }
+    };
+
+    function changeLanguage(lang) {
+      const t = translations[lang] || translations['nl'];
+      document.querySelector('h2.text-2xl').textContent = t.instellingen;
+      document.querySelector('p.text-gray-700').textContent = t.beheer;
+      document.querySelector('label[for="taal"]').textContent = t.taalkeuze;
+      document.querySelector('label[for="grafiek"]').textContent = t.grafiek;
+      document.querySelector('option[value="lijn"]').textContent = t.lijn;
+      document.querySelector('option[value="staaf"]').textContent = t.staaf;
+      document.querySelector('option[value="cirkel"]').textContent = t.cirkel;
+      document.querySelector('label[for="meldingen"]').textContent = t.meldingen;
+      document.querySelector('button[type="submit"]').textContent = t.opslaan;
+      document.querySelector('a[href="dashboard.php"] span').textContent = t.dashboard;
+      document.querySelector('a[href="../../includes/logout.php"] span').textContent = t.logout;
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('instellingenForm');
         const melding = document.getElementById('melding');
+        const taalSelect = document.getElementById('taal');
 
         // Laad bestaande instellingen uit localStorage
         const opgeslagen = JSON.parse(localStorage.getItem('instellingen'));
+        let huidigeTaal = 'nl';
         if (opgeslagen) {
             document.getElementById('taal').value = opgeslagen.taal || 'nl';
             document.getElementById('grafiek').value = opgeslagen.grafiek || 'lijn';
             document.getElementById('meldingen').checked = opgeslagen.meldingen || false;
+            huidigeTaal = opgeslagen.taal || 'nl';
         }
+        changeLanguage(huidigeTaal);
+
+        taalSelect.addEventListener('change', function() {
+            changeLanguage(this.value);
+        });
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -112,7 +166,8 @@ if (!isset($_SESSION['user_id'])) {
             const grafiek = document.getElementById('grafiek').value;
             const meldingen = document.getElementById('meldingen').checked;
             localStorage.setItem('instellingen', JSON.stringify({ taal, grafiek, meldingen }));
-            melding.textContent = 'Instellingen opgeslagen';
+            changeLanguage(taal);
+            melding.textContent = translations[taal]?.opgeslagen || 'Instellingen opgeslagen';
             melding.classList.remove('hidden');
             setTimeout(() => melding.classList.add('hidden'), 2500);
         });

@@ -71,43 +71,41 @@ $db = $database->getConnection();
         </div>
 
         <!-- Main Content -->
-        <main class="flex-1 p-8">
-            <div class="chart-container">
-                <h2>Zonnepaneelspanning (V)</h2>
-                <canvas id="spanningChart"></canvas>
+        <main class="flex-1 flex justify-center">
+            <div class="w-full max-w-5xl px-4 py-8">
+                <h1 class="text-3xl font-semibold text-gray-800 mb-10 text-center">Mijn energieverbruik</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="chart-container bg-white rounded-lg shadow p-6">
+                        <h2 class="text-lg font-bold mb-4">Zonnepaneelspanning (V)</h2>
+                        <canvas id="spanningChart"></canvas>
+                    </div>
+                    <div class="chart-container bg-white rounded-lg shadow p-6">
+                        <h2 class="text-lg font-bold mb-4">Zonnepaneelstroom (A)</h2>
+                        <canvas id="stroomChart"></canvas>
+                    </div>
+                    <div class="chart-container bg-white rounded-lg shadow p-6 md:col-span-2">
+                        <h2 class="text-lg font-bold mb-4">Binnen- en Buitentemperatuur (°C)</h2>
+                        <canvas id="tempChart"></canvas>
+                    </div>
+                    <div class="chart-container bg-white rounded-lg shadow p-6">
+                        <h2 class="text-lg font-bold mb-4">Luchtvochtigheid (%)</h2>
+                        <canvas id="luchtChart"></canvas>
+                    </div>
+                    <div class="chart-container bg-white rounded-lg shadow p-6">
+                        <h2 class="text-lg font-bold mb-4">Waterstofproductie (L/u)</h2>
+                        <canvas id="waterstofChart"></canvas>
+                    </div>
+                    <div class="chart-container bg-white rounded-lg shadow p-6">
+                        <h2 class="text-lg font-bold mb-4">Accuniveau (%)</h2>
+                        <canvas id="accuChart"></canvas>
+                    </div>
+                    <div class="chart-container bg-white rounded-lg shadow p-6">
+                        <h2 class="text-lg font-bold mb-4">CO₂-concentratie binnen (ppm)</h2>
+                        <canvas id="co2Chart"></canvas>
+                    </div>
+                </div>
+                <script src="../../js/dashboard.js"></script>
             </div>
-
-            <div class="chart-container">
-                <h2>Zonnepaneelstroom (A)</h2>
-                <canvas id="stroomChart"></canvas>
-            </div>
-
-            <div class="chart-container">
-                <h2>Binnen- en Buitentemperatuur (°C)</h2>
-                <canvas id="tempChart"></canvas>
-            </div>
-
-            <div class="chart-container">
-                <h2>Luchtvochtigheid (%)</h2>
-                <canvas id="luchtChart"></canvas>
-            </div>
-
-            <div class="chart-container">
-                <h2>Waterstofproductie (L/u)</h2>
-                <canvas id="waterstofChart"></canvas>
-            </div>
-
-            <div class="chart-container">
-                <h2>Accuniveau (%)</h2>
-                <canvas id="accuChart"></canvas>
-            </div>
-
-            <div class="chart-container">
-                <h2>CO₂-concentratie binnen (ppm)</h2>
-                <canvas id="co2Chart"></canvas>
-            </div>
-
-            <script src="../../js/dashboard.js"></script>
         </main>
     </div>
 
