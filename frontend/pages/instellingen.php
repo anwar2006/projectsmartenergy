@@ -67,8 +67,56 @@ if (!isset($_SESSION['user_id'])) {
         <!-- Main Content -->
         <main class="flex-1 p-8">
             <h2 class="text-2xl font-bold mb-4 text-brand-purple">Instellingen</h2>
-            <p class="text-gray-700">Hier kun je je instellingen beheren.</p>
+            <p class="text-gray-700 mb-8">Hier kun je je instellingen beheren.</p>
+            <form id="instellingenForm" class="bg-white p-6 rounded-lg shadow-md max-w-lg" method="POST" action="">
+                <div class="mb-4">
+                    <label for="taal" class="block text-gray-700 font-bold mb-2">Taalkeuze</label>
+                    <select id="taal" name="taal" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-purple">
+                        <option value="nl">Nederlands</option>
+                        <option value="en">Engels</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="grafiek" class="block text-gray-700 font-bold mb-2">Voorkeur grafiektype</label>
+                    <select id="grafiek" name="grafiek" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-purple">
+                        <option value="lijn">Lijn</option>
+                        <option value="staaf">Staaf</option>
+                        <option value="cirkel">Cirkel</option>
+                    </select>
+                </div>
+                <div class="mb-6 flex items-center">
+                    <input id="meldingen" name="meldingen" type="checkbox" class="h-4 w-4 text-brand-purple focus:ring-brand-purple border-gray-300 rounded">
+                    <label for="meldingen" class="ml-2 block text-gray-700 font-bold">Meldingen ontvangen</label>
+                </div>
+                <button type="submit" class="bg-brand-purple hover:bg-brand-purple-light text-white font-bold py-2 px-4 rounded">Opslaan</button>
+            </form>
+            <div id="melding" class="hidden mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded"></div>
         </main>
     </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('instellingenForm');
+        const melding = document.getElementById('melding');
+
+        // Laad bestaande instellingen uit localStorage
+        const opgeslagen = JSON.parse(localStorage.getItem('instellingen'));
+        if (opgeslagen) {
+            document.getElementById('taal').value = opgeslagen.taal || 'nl';
+            document.getElementById('grafiek').value = opgeslagen.grafiek || 'lijn';
+            document.getElementById('meldingen').checked = opgeslagen.meldingen || false;
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const taal = document.getElementById('taal').value;
+            const grafiek = document.getElementById('grafiek').value;
+            const meldingen = document.getElementById('meldingen').checked;
+            localStorage.setItem('instellingen', JSON.stringify({ taal, grafiek, meldingen }));
+            melding.textContent = 'Instellingen opgeslagen';
+            melding.classList.remove('hidden');
+            setTimeout(() => melding.classList.add('hidden'), 2500);
+        });
+    });
+    </script>
 </body>
 </html> 
