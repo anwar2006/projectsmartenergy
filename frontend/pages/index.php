@@ -126,10 +126,19 @@ if (isset($_SESSION['user_id'])) {
     </div>
 
     <!-- Footer -->
-    <footer class="bg-brand-purple text-white">
-        <div class="max-w-7xl mx-auto px-4 py-8">
-            <div class="text-center">
-                <p>&copy; <?php echo date('Y'); ?> Smart Energy Platform. All rights reserved.</p>
+    <footer class="bg-brand-purple text-white mt-12">
+        <div class="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="text-center md:text-left">
+                <div class="mb-2 font-semibold">Contact</div>
+                <div>Email: info@smartenergy.com | Tel: 010-1234567</div>
+                <div>Adres: Energieweg 1, 1234 AB Rotterdam</div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center gap-2 md:gap-6">
+                <a href="#" class="underline hover:text-gray-200">Privacybeleid</a>
+                <a href="#" class="underline hover:text-gray-200">Gebruiksvoorwaarden</a>
+            </div>
+            <div class="text-center md:text-right mt-2 md:mt-0">
+                &copy; 2025 Smart Energy
             </div>
         </div>
     </footer>
