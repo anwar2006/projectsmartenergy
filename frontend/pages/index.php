@@ -57,20 +57,22 @@ if (isset($_SESSION['user_id'])) {
     <!-- Hero Section -->
     <div class="min-h-screen">
         <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center justify-between mb-12">
+            <div class="flex flex-col md:flex-row items-center justify-between mb-8 md:mb-12">
                 <div class="text-center md:text-left md:w-1/2">
-                    <h1 class="text-4xl font-bold text-gray-900 mb-6" data-i18n="heroTitle">
+                    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6" data-i18n="heroTitle">
                         Monitor and Optimize Your Energy Consumption
                     </h1>
-                    <a href="login.php" class="bg-brand-purple hover:bg-brand-purple-light text-white font-extrabold py-4 px-10 rounded-xl text-2xl inline-flex items-center shadow-lg transition-all duration-200 mb-6">
-                        Get Started
-                        <i class="fas fa-arrow-right ml-4 text-2xl"></i>
-                    </a>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto mt-6" data-i18n="heroText">
+                    <div class="flex justify-center md:justify-start">
+                        <a href="login.php" class="bg-brand-purple hover:bg-brand-purple-light text-white font-extrabold py-3 px-8 md:py-4 md:px-10 rounded-xl text-xl md:text-2xl inline-flex items-center shadow-lg transition-all duration-200 mb-4 md:mb-6">
+                            Get Started
+                            <i class="fas fa-arrow-right ml-4 text-2xl"></i>
+                        </a>
+                    </div>
+                    <p class="text-base md:text-xl text-gray-600 max-w-3xl mx-auto mt-4 md:mt-6" data-i18n="heroText">
                         Krijg direct inzicht in je energieverbruik. Bespaar kosten en optimaliseer je gebruik.
                     </p>
                 </div>
-                <div class="mt-10 md:mt-0 md:w-1/2 flex justify-center">
+                <div class="mt-8 md:mt-0 md:w-1/2 flex justify-center">
                     <!-- Hero SVG Illustration -->
                     <svg width="320" height="220" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="30" y="120" width="80" height="50" rx="8" fill="#4B2E83"/>
@@ -90,35 +92,34 @@ if (isset($_SESSION['user_id'])) {
             </div>
 
             <!-- Features Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                <div class="bg-white rounded-lg shadow p-6">
-                    <div class="text-brand-purple text-3xl mb-4">
-                        <i class="fas fa-chart-line"></i>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 mt-8 md:mt-12">
+                <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center transition-transform duration-200 hover:shadow-xl hover:scale-105">
+                    <div class="text-brand-purple mb-4">
+                        <svg width="40" height="40" fill="none" stroke="#4B2E83" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="18" height="18" rx="4" fill="#fff" stroke="#4B2E83" stroke-width="2.5"/>
+                            <polyline points="6,16 10,10 14,14 18,8" stroke="#4B2E83" stroke-width="2.5" fill="none"/>
+                            <circle cx="6" cy="16" r="1.5" fill="#4B2E83"/>
+                            <circle cx="10" cy="10" r="1.5" fill="#4B2E83"/>
+                            <circle cx="14" cy="14" r="1.5" fill="#4B2E83"/>
+                            <circle cx="18" cy="8" r="1.5" fill="#4B2E83"/>
+                        </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2" data-i18n="feature1Title">Real-time Monitoring</h3>
-                    <p class="text-gray-600" data-i18n="feature1Text">
-                        Track your energy consumption in real-time with detailed analytics and insights.
-                    </p>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2 text-center whitespace-nowrap" data-i18n="feature1Title">Realtime monitoring</h3>
+                    <p class="text-gray-600 text-center" data-i18n="feature1Text">Bekijk je energieverbruik direct met heldere grafieken en analyses.</p>
                 </div>
-
-                <div class="bg-white rounded-lg shadow p-6">
-                    <div class="text-brand-purple text-3xl mb-4">
-                        <i class="fas fa-lightbulb"></i>
+                <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center transition-transform duration-200 hover:shadow-xl hover:scale-105">
+                    <div class="text-brand-purple mb-4">
+                        <svg width="40" height="40" fill="none" stroke="#4B2E83" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2v20M5 12h14"/></svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2" data-i18n="feature2Title">Smart Optimization</h3>
-                    <p class="text-gray-600" data-i18n="feature2Text">
-                        Receive personalized suggestions to optimize your energy usage patterns.
-                    </p>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2 text-center whitespace-nowrap" data-i18n="feature2Title">Slimme optimalisatie</h3>
+                    <p class="text-gray-600 text-center" data-i18n="feature2Text">Ontvang persoonlijke tips om je energiegebruik te verbeteren.</p>
                 </div>
-
-                <div class="bg-white rounded-lg shadow p-6">
-                    <div class="text-brand-purple text-3xl mb-4">
-                        <i class="fas fa-euro-sign"></i>
+                <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center transition-transform duration-200 hover:shadow-xl hover:scale-105">
+                    <div class="text-brand-purple mb-4">
+                        <svg width="40" height="40" fill="none" stroke="#4B2E83" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2" data-i18n="feature3Title">Cost Savings</h3>
-                    <p class="text-gray-600" data-i18n="feature3Text">
-                        Save money by identifying and eliminating energy waste in your system.
-                    </p>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2 text-center whitespace-nowrap" data-i18n="feature3Title">Kosten besparen</h3>
+                    <p class="text-gray-600 text-center" data-i18n="feature3Text">Bespaar geld door energieverspilling te voorkomen.</p>
                 </div>
             </div>
         </div>
