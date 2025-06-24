@@ -1,6 +1,7 @@
 fetch('http://localhost:3000')
   .then(res => res.json())
   .then(data => {
+    console.log(data);
     const tijd = data.map(d => d["Tijdstip"]);
     const spanning = data.map(d => d["Zonnepaneelspanning (V)"]);
     const stroom = data.map(d => d["Zonnepaneelstroom (A)"]);
