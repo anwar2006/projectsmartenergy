@@ -2,6 +2,41 @@ const instellingen = JSON.parse(localStorage.getItem('instellingen')) || {};
 const chartType = instellingen.grafiek || 'lijn';
 const meldingenAan = instellingen.meldingen === true || instellingen.meldingen === 'true';
 
+const translations = {
+  nl: {
+    spanning: 'Zonnepaneelspanning (V)',
+    stroom: 'Zonnepaneelstroom (A)',
+    temp: 'Binnen- en Buitentemperatuur (°C)',
+    buiten: 'Buitentemperatuur',
+    binnen: 'Binnentemperatuur',
+    lucht: 'Luchtvochtigheid (%)',
+    waterstof: 'Waterstofproductie (L/u)',
+    accu: 'Accuniveau (%)',
+    co2: 'CO₂-concentratie binnen (ppm)',
+    tijd: 'Tijdstip',
+    dashboardLoaded: 'Dashboard geladen!',
+    toepassen: 'Toepassen',
+    fout: 'Er is een fout opgetreden.'
+  },
+  en: {
+    spanning: 'Solar panel voltage (V)',
+    stroom: 'Solar panel current (A)',
+    temp: 'Indoor and Outdoor Temperature (°C)',
+    buiten: 'Outdoor temperature',
+    binnen: 'Indoor temperature',
+    lucht: 'Humidity (%)',
+    waterstof: 'Hydrogen production (L/h)',
+    accu: 'Battery level (%)',
+    co2: 'CO₂ concentration indoor (ppm)',
+    tijd: 'Time',
+    dashboardLoaded: 'Dashboard loaded!',
+    toepassen: 'Apply',
+    fout: 'An error occurred.'
+  }
+};
+const taal = instellingen.taal || 'nl';
+const t = translations[taal];
+
 function showNotification(message) {
   if (meldingenAan) {
     let n = document.createElement('div');
@@ -69,30 +104,31 @@ fetch('http://localhost:3000')
           responsive: true,
           plugins: { legend: { display: true } },
           scales: getChartType(id) === 'pie' ? {} : {
-            x: { display: true, title: { display: true, text: 'Tijdstip' } },
+            x: { display: true, title: { display: true, text: t.tijd } },
             y: { beginAtZero: false }
           }
         }
       });
     };
 
-    makeChart('spanningChart', 'Zonnepaneelspanning (V)', spanning, 'orange');
-    makeChart('stroomChart', 'Zonnepaneelstroom (A)', stroom, 'green');
-    makeChart('tempChart', 'Temperatuur (°C)', [
+    makeChart('spanningChart', t.spanning, spanning, 'orange');
+    makeChart('stroomChart', t.stroom, stroom, 'green');
+    makeChart('tempChart', t.temp, [
       {
-        label: 'Buitentemperatuur',
+        label: t.buiten,
         data: buitenTemp,
         borderColor: 'blue'
       },
       {
-        label: 'Binnentemperatuur',
+        label: t.binnen,
         data: binnenTemp,
         borderColor: 'red'
       }
     ], null);
-    makeChart('luchtChart', 'Luchtvochtigheid (%)', luchtvochtigheid, 'teal');
-    makeChart('waterstofChart', 'Waterstofproductie (L/u)', waterstof, 'purple');
-    makeChart('accuChart', 'Accuniveau (%)', accu, 'black');
-    makeChart('co2Chart', 'CO₂-concentratie (ppm)', co2, 'gray');
-    showNotification('Dashboard geladen!');
-  }); 
+    makeChart('luchtChart', t.lucht, luchtvochtigheid, 'teal');
+    makeChart('waterstofChart', t.waterstof, waterstof, 'purple');
+    makeChart('accuChart', t.accu, accu, 'black');
+    makeChart('co2Chart', t.co2, co2, 'gray');
+    showNotification(t.dashboardLoaded);
+  })
+  .catch(() => showNotification(t.fout)); 
