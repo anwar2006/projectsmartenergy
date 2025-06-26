@@ -63,6 +63,16 @@ $db = $database->getConnection();
                     <a href="instellingen.php" class="flex items-center text-white py-2 px-4 rounded hover:bg-brand-purple-light">
                         <span data-i18n="instellingen">Instellingen</span>
                     </a>
+                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'super_admin'): ?>
+                    <a href="admin_management.php" class="flex items-center text-white py-2 px-4 rounded hover:bg-brand-purple-light">
+                        <span>Admin Management</span>
+                    </a>
+                    <?php endif; ?>
+                    <?php if (isset($_SESSION['role']) && in_array($_SESSION['role'], ['super_admin', 'admin'])): ?>
+                    <a href="user_management.php" class="flex items-center text-white py-2 px-4 rounded hover:bg-brand-purple-light<?php if(basename($_SERVER['PHP_SELF']) == 'user_management.php') echo ' bg-brand-purple-light'; ?>">
+                        <span>User Management</span>
+                    </a>
+                    <?php endif; ?>
                     <a href="../../includes/logout.php" class="flex items-center text-white py-2 px-4 rounded hover:bg-brand-purple-light mt-8" data-i18n="logout">
                         <span data-i18n="logout">logout</span>
                     </a>
